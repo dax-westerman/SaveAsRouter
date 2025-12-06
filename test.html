@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveAsRouter Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196f3;
+            margin: 20px 0;
+        }
+        img {
+            max-width: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SaveAsRouter Extension Test Page</h1>
+    
+    <div class="instructions">
+        <h2>Testing Instructions:</h2>
+        <ol>
+            <li>Right-click anywhere on this page</li>
+            <li>Look for the "Offline" menu item</li>
+            <li>Hover over "Offline" to see the sub-menu</li>
+            <li>Click on "menu1" or "menu2"</li>
+            <li>You should see an alert showing the action tag</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>Test with Text</h3>
+        <p>This is some sample text. Try right-clicking on this text to test the context menu.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+
+    <div class="test-section">
+        <h3>Test with Image</h3>
+        <p>Try right-clicking on the image below:</p>
+        <img src="https://via.placeholder.com/200x200/4285f4/ffffff?text=Test+Image" alt="Test image">
+    </div>
+
+    <div class="test-section">
+        <h3>Test with Link</h3>
+        <p>Try right-clicking on this link: <a href="https://example.com">Example Link</a></p>
+    </div>
+</body>
+</html>
