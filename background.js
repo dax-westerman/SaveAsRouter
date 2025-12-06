@@ -60,7 +60,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }).catch(error => {
       console.error('Failed to execute script:', error);
       // Show error notification to user
-      console.warn('Cannot execute script on this page. Try a regular web page instead of chrome:// or extension pages.');
+      chrome.notifications.create({
+        type: 'basic',
+        iconUrl: 'icon48.png',
+        title: 'SaveAsRouter',
+        message: 'Cannot execute action on this page. Try a regular web page instead.'
+      });
     });
   }
 });
