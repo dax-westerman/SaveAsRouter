@@ -1,14 +1,20 @@
 // Load config and create context menus
 let config = {};
 
-// Load config file
-fetch(chrome.runtime.getURL('config.json'))
-  .then(response => response.json())
-  .then(data => {
-    config = data;
-    createContextMenus();
-  })
-  .catch(error => console.error('Error loading config:', error));
+// Initialize extension when installed or started
+chrome.runtime.onInstalled.addListener(initializeExtension);
+chrome.runtime.onStartup.addListener(initializeExtension);
+
+function initializeExtension() {
+  // Load config file
+  fetch(chrome.runtime.getURL('config.json'))
+    .then(response => response.json())
+    .then(data => {
+      config = data;
+      createContextMenus();
+    })
+    .catch(error => console.error('Error loading config:', error));
+}
 
 // Create context menus from config
 function createContextMenus() {
@@ -37,6 +43,11 @@ function createContextMenus() {
 
 // Handle menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
+  // Skip parent menu clicks
+  if (info.menuItemId === 'offline-parent') {
+    return;
+  }
+  
   if (info.menuItemId.startsWith('offline-')) {
     // Extract tag from menu item id
     const tag = info.menuItemId.replace('offline-', '');
@@ -46,6 +57,10 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       target: { tabId: tab.id },
       func: performAction,
       args: [tag]
+    }).catch(error => {
+      console.error('Failed to execute script:', error);
+      // Show error notification to user
+      console.warn('Cannot execute script on this page. Try a regular web page instead of chrome:// or extension pages.');
     });
   }
 });
