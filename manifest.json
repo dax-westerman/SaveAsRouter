@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "SaveAsRouter",
+  "version": "1.0.0",
+  "description": "A Chrome Extension to help manage saving media to the correct location",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["config.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
