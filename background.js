@@ -59,6 +59,24 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
         return;
       }
 
+      // Determine selected part of DOM
+      if (info.selectionText) {
+        // User selected text
+        console.log('Selected text:', info.selectionText);
+      }
+      if (info.srcUrl) {
+        // User right-clicked on a media element
+        console.log('Media URL:', info.srcUrl);
+      }
+      if (info.linkUrl) {
+        // User right-clicked on a link
+        console.log('Link URL:', info.linkUrl);
+      }
+      if (info.mediaType) {
+        // Type of media (image, video, audio)
+        console.log('Media type:', info.mediaType);
+      }
+
       // Extract the index from the menu item ID
       const index = parseInt(info.menuItemId.replace('offline-', ''));
       const menuItem = config.Offline[index];

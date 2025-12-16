@@ -18,33 +18,18 @@
     }
   ],
   "Actions": {
-    "pre_steps": [
-      "fetch_content",
-      "determine_file_type",
-      "infer_or_ask_filename"
-    ],
-    "processing_steps": [
-      "process"
-    ],
-    "post_steps": [
-      "save_content"
-    ],
     "class_actions": {
       "infographic": {
-        "file": "infographic/infographic_action.js",
-        "steps": []
+        "file": "infographic/infographic_action.js"
       },
       "meme": {
-        "file": "meme/meme_action.js",
-        "steps": []
+        "file": "meme/meme_action.js"
       },
       "video": {
-        "file": "video/video_action.js",
-        "steps": []
+        "file": "video/video_action.js"
       },
       "qresearch_post": {
-        "file": "qresearch_post/qresearch_post_action.js",
-        "steps": []
+        "file": "qresearch_post/qresearch_post_action.js"
       }
     }
   }

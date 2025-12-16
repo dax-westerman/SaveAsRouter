@@ -12,4 +12,4 @@ class Video extends BaseAction {
     }
 }
 
-module.exports = Video;
+export default Video;

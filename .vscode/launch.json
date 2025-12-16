@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug Chrome Extension (background)",
+            "url": "https://nerv.8kun.top/file_store/89aa3ad1f921b9d591a603d3a04ea76bb46e295fd6e7a257149e4c88acefacac.png",
+            "webRoot": "${workspaceFolder}/dist",
+            "runtimeExecutable": "/usr/bin/brave-browser",
+            "runtimeArgs": [
+                "--load-extension=${workspaceFolder}",
+                "--remote-debugging-port=9222"
+            ],
+            "preLaunchTask": "npm: build",
+            "sourceMaps": true,
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}/dist"
+        }
+    ]
+}

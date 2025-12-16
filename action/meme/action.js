@@ -12,4 +12,4 @@ class Meme extends BaseAction {
     }
 }
 
-module.exports = Meme;
+export default Meme;

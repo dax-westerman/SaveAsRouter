@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -11,6 +12,7 @@ module.exports = {
         filename: '[name].js',
         clean: true
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -25,6 +27,13 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: 'manifest.json', to: '.' }
+            ]
+        })
+    ],
     experiments: {
         outputModule: true
     },

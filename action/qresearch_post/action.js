@@ -12,4 +12,4 @@ class QResearchPost extends BaseAction {
     }
 }
 
-module.exports = QResearchPost;
+export default QResearchPost;
