@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveAsRouter Extension Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #4285F4;
+        }
+        .test-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        img {
+            max-width: 300px;
+            display: block;
+            margin: 20px 0;
+        }
+        .instructions {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>SaveAsRouter Extension Test Page</h1>
+    
+    <div class="instructions">
+        <h2>How to Test:</h2>
+        <ol>
+            <li>Install the SaveAsRouter extension (see README.md)</li>
+            <li>Right-click on any text, image, or link below</li>
+            <li>Hover over "Offline" in the context menu</li>
+            <li>Select a sub-menu item (menu1 or menu2)</li>
+            <li>An alert should appear with the corresponding tag</li>
+        </ol>
+    </div>
+
+    <div class="test-area">
+        <h2>Test with Text</h2>
+        <p>Right-click on this text to see the "Offline" context menu option. The extension should show a sub-menu with "menu1" and "menu2" options.</p>
+        <p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. Select this text and right-click to test!</p>
+    </div>
+
+    <div class="test-area">
+        <h2>Test with Links</h2>
+        <p><a href="https://example.com">Right-click this link</a> to test the context menu on links.</p>
+        <p><a href="https://github.com">Another test link for GitHub</a></p>
+    </div>
+
+    <div class="test-area">
+        <h2>Test with Images</h2>
+        <p>Right-click on the image below:</p>
+        <img src="https://via.placeholder.com/300x200/4285F4/ffffff?text=Test+Image" alt="Test Image">
+    </div>
+
+    <div class="test-area">
+        <h2>Expected Behavior</h2>
+        <ul>
+            <li>Clicking "menu1" should show alert: <code>action1</code></li>
+            <li>Clicking "menu2" should show alert: <code>action2</code></li>
+        </ul>
+    </div>
+</body>
+</html>

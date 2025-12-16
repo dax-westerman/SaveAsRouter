@@ -1,0 +1,12 @@
+{
+  "Offline": [
+    {
+      "label": "menu1",
+      "tag": "action1"
+    },
+    {
+      "label": "menu2",
+      "tag": "action2"
+    }
+  ]
+}
