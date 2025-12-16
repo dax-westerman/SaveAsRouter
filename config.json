@@ -1,12 +1,51 @@
 {
   "Offline": [
     {
-      "label": "menu1",
-      "tag": "action1"
+      "label": "Save Infographic",
+      "tag": "infographic"
     },
     {
-      "label": "menu2",
-      "tag": "action2"
+      "label": "Save Meme",
+      "tag": "meme"
+    },
+    {
+      "label": "Save Video",
+      "tag": "video"
+    },
+    {
+      "label": "Save /qresearch/ post",
+      "tag": "qresearch_post"
     }
-  ]
+  ],
+  "Actions": {
+    "pre_steps": [
+      "fetch_content",
+      "determine_file_type",
+      "infer_or_ask_filename"
+    ],
+    "processing_steps": [
+      "process"
+    ],
+    "post_steps": [
+      "save_content"
+    ],
+    "class_actions": {
+      "infographic": {
+        "file": "infographic/infographic_action.js",
+        "steps": []
+      },
+      "meme": {
+        "file": "meme/meme_action.js",
+        "steps": []
+      },
+      "video": {
+        "file": "video/video_action.js",
+        "steps": []
+      },
+      "qresearch_post": {
+        "file": "qresearch_post/qresearch_post_action.js",
+        "steps": []
+      }
+    }
+  }
 }
