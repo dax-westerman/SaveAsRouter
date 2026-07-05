@@ -1,6 +1,6 @@
 const actionInstanceCache = {};
 
-export async function actionHandler(tag) {
+export async function handleAction(tag) {
   // Your logic here
   alert('Received tag: ' + tag);
 
@@ -25,11 +25,8 @@ export async function actionHandler(tag) {
 async function actionListener(message, sender, sendResponse) {
   if (message.action === 'perform_action' && message.tag) {
     console.log('Content script received tag:', message.tag);
-    await actionHandler(message.tag);
+    await handleAction(message.tag);
   }
 }
 
-
-
-
-export { actionHandler };
+export { actionListener };

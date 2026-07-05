@@ -1,4 +1,5 @@
-import { setupContextMenus } from './menu_setup.js';
+import { setupContextMenus } from '../menus/menu_setup.js';
+import { PERMANENT_PROJECT_LABEL } from '../consts.js';
 
 /**
  * Sets up the extension's context menu and handles installation or update events.

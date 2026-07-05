@@ -6,7 +6,7 @@
  * @param {*} tab - The tab where the click occurred.
  * @returns {Promise<void>}
  */
-async function handleMenuClick(info, tab) {
+async function menuListener(info, tab) {
   console.log('Menu item clicked:', info.menuItemId);
   // Check if it's one of our menu items
   if (info.menuItemId.startsWith(ROUTE_MENU_ID_PREFIX) && info.menuItemId !== CONTEXT_MENU_ID) {
@@ -57,3 +57,5 @@ async function handleMenuClick(info, tab) {
     }
   }
 }
+
+export { menuListener };
