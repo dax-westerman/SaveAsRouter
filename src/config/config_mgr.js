@@ -5,7 +5,7 @@ import {
   ROUTE_MENU_ID_PREFIX,
   STORAGE_KEY_SUFFIX,
   MENU_ID_KEY,
-} from './consts.js';
+} from '../consts.js';
 
 let cachedConfigData = null;
 

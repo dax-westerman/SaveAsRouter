@@ -1,10 +1,10 @@
-import { CONTEXT_MENU_ID, ROUTE_MENU_ID_PREFIX } from './consts.js';
+import { CONTEXT_MENU_ID, ROUTE_MENU_ID_PREFIX } from '../consts.js';
 import {
   fetchConfigFile,
   fetchRouteTargets,
   fetchMenuLabel,
   getBrowserStorageId,
-} from './config_mgr.js';
+} from '../config/config_mgr.js';
 
 // Load configuration and create context menus
 export async function setupContextMenus() {

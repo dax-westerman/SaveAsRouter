@@ -4,7 +4,7 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Debug Chrome Extension (background)",
+            "name": "Load Extension",
             "url": "file://${workspaceFolder}/tests/test.html",
             "webRoot": "${workspaceFolder}",
             "runtimeExecutable": "/usr/bin/brave-browser",
@@ -22,7 +22,7 @@
         {
             "type": "chrome",
             "request": "attach",
-            "name": "Attach to Chrome",
+            "name": "Attach to Extension",
             "port": 9222,
             "webRoot": "${workspaceFolder}"
         },
