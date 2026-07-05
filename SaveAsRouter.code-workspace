@@ -14,10 +14,8 @@
       "**/node_modules": true,
       "**/out": true,
       "**/coverage": true,
-    },
-    "chat.mcp.serverSampling": {
-      
-    },
+      "package-lock.json": true,
+    }
 
   }
 }

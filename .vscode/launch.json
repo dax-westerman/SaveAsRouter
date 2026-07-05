@@ -9,7 +9,7 @@
             "webRoot": "${workspaceFolder}",
             "runtimeExecutable": "/usr/bin/brave-browser",
             "runtimeArgs": [
-                "--load-extension=${workspaceFolder}",
+                "--load-extension=${workspaceFolder}/dist",
                 "--remote-debugging-port=9222",
                 "--allow-file-access-from-files"
             ],
