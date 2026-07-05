@@ -1,4 +1,4 @@
-const BaseAction = require('../action_base');
+const BaseAction = require('../BaseAction');
 
 class QResearchPost extends BaseAction {
     constructor() {

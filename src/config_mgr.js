@@ -1,4 +1,11 @@
-import { ROUTE_TARGETS, MENU_NAME_KEY, CONTEXT_MENU_ID, ROUTE_MENU_ID_PREFIX } from './consts.js';
+import {
+  ROUTE_TARGETS,
+  MENU_NAME_KEY,
+  CONTEXT_MENU_ID,
+  ROUTE_MENU_ID_PREFIX,
+  STORAGE_KEY_SUFFIX,
+  MENU_ID_KEY,
+} from './consts.js';
 
 let cachedConfigData = null;
 
@@ -30,7 +37,7 @@ async function fetchMenuId() {
  * Fetches the route targets from the configuration file.
  * @returns {Promise<Array>} The route targets.
  */
-async function fetchRouteTargets() {
+export async function fetchRouteTargets() {
   const config = await fetchConfigFile();
   if (!config || !config[ROUTE_TARGETS]) {
     console.warn('No configuration found for routing menus');
@@ -57,7 +64,7 @@ async function fetchRouteTargets() {
  * @returns {Promise<string|null>} The menu name.
  */
 
-async function fetchMenuLabel() {
+export async function fetchMenuLabel() {
   const config = await fetchConfigFile();
   if (!config || !config.hasOwnProperty(MENU_NAME_KEY)) {
     console.error('menu_label not found in config.json');
@@ -66,7 +73,7 @@ async function fetchMenuLabel() {
   return config[MENU_NAME_KEY];
 }
 
-async function getBrowserStorageId() {
+export async function getBrowserStorageId() {
   const menuId = await fetchMenuId();
   if (!menuId) {
     console.error('Failed to get storage key for menu configuration');

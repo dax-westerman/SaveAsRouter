@@ -9,6 +9,7 @@ const ROUTE_MENU_ID_PREFIX = 'route-';
 
 // Other consts
 const STORAGE_KEY_SUFFIX = 'storage_key';
+const PERMANENT_PROJECT_LABEL = 'Content Router';
 
 export {
   MENU_LABEL_KEY as MENU_NAME_KEY,
@@ -16,4 +17,6 @@ export {
   CONTEXT_MENU_ID,
   ROUTE_MENU_ID_PREFIX,
   STORAGE_KEY_SUFFIX,
+  MENU_ID_KEY,
+  PERMANENT_PROJECT_LABEL,
 };

@@ -1,18 +1,21 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = {
-    mode: 'production',
+module.exports = (env, argv) => {
+    const isDev = argv.mode === 'development';
+    return {
+    mode: isDev ? 'development' : 'production',
     entry: {
-        background: './background.js',
-        content: './content.js'
+        background: './src/background.js',
+        content: './src/content.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
         clean: true
     },
-    devtool: 'source-map',
+    devtool: isDev ? 'inline-source-map' : 'source-map',
     module: {
         rules: [
             {
@@ -40,4 +43,5 @@ module.exports = {
     resolve: {
         extensions: ['.js']
     }
+    };
 };

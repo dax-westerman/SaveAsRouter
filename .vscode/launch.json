@@ -5,12 +5,13 @@
             "type": "chrome",
             "request": "launch",
             "name": "Debug Chrome Extension (background)",
-            "url": "file://${workspaceFolder}/test.html",
+            "url": "file://${workspaceFolder}/tests/test.html",
             "webRoot": "${workspaceFolder}",
             "runtimeExecutable": "/usr/bin/brave-browser",
             "runtimeArgs": [
                 "--load-extension=${workspaceFolder}",
-                "--remote-debugging-port=9222"
+                "--remote-debugging-port=9222",
+                "--allow-file-access-from-files"
             ],
             "preLaunchTask": "npm: build:dev",
             "sourceMaps": true,
@@ -24,6 +25,18 @@
             "name": "Attach to Chrome",
             "port": 9222,
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Service Worker",
+            "port": 9222,
+            "targetTypes": ["service_worker"],
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack://saveasrouter-extension/*": "${workspaceFolder}/*"
+            }
         }
     ]
 }

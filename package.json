@@ -7,7 +7,8 @@
         "build:dev": "webpack --mode development",
         "build:watch": "webpack --mode development --watch",
         "package": "webpack --mode production && cd dist && zip -r ../saveasrouter.zip . && cd ..",
-        "browser:debug": "npm run build:dev && brave-browser --load-extension=$(pwd) --remote-debugging-port=9222"
+        "browser:debug": "npm run build:dev && brave-browser --load-extension=$(pwd) --remote-debugging-port=9222",
+        "clean": "rm -rf dist saveasrouter.zip"
     },
     "devDependencies": {
         "@babel/core": "^7.23.0",

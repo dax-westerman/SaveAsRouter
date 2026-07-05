@@ -1,4 +1,4 @@
-import { BaseAction } from '../action_base.js';
+import { BaseAction } from '../BaseAction.js';
 
 class Infographic extends BaseAction {
     constructor() {

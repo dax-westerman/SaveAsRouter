@@ -1,4 +1,4 @@
-const BaseAction = require('../action_base');
+const BaseAction = require('../BaseAction');
 
 class Video extends BaseAction {
     constructor() {

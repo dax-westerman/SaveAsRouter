@@ -1,6 +1,6 @@
 {
   "menu_id": "route_to_menu",
-  "menu_label": "Route to...",
+  "menu_label": "Route content to...",
   "route_targets": [
     {
       "label": "Infographic",
