@@ -1,8 +1,21 @@
+/**
+ * Sets up the extension's context menu and handles installation or update events.
+ * This function is called when the extension is installed or updated.
+ * It fetches the configuration, creates context menus, and stores the configuration in Chrome storage.
+ */
 function setupHandler() {
   console.log('Extension installed/updated');
   setupContextMenus();
 }
 
+/**
+ * Handles clicks on the extension's context menu items.
+ * This function is called when a context menu item is clicked.
+ * It retrieves the stored configuration and performs the appropriate action based on the clicked menu item.
+ * @param {*} info - Information about the clicked menu item.
+ * @param {*} tab - The tab where the click occurred.
+ * @returns {Promise<void>}
+ */
 async function handleMenuClick(info, tab) {
   // Check if it's one of our menu items
   if (info.menuItemId.startsWith(ROUTE_MENU_ID_PREFIX) && info.menuItemId !== CONTEXT_MENU_ID) {
