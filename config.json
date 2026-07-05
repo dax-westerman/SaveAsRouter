@@ -1,19 +1,21 @@
 {
-  "Offline": [
+  "menu_id": "route_to_menu",
+  "menu_label": "Route to...",
+  "route_targets": [
     {
-      "label": "Save Infographic",
+      "label": "Infographic",
       "tag": "infographic"
     },
     {
-      "label": "Save Meme",
+      "label": "Meme",
       "tag": "meme"
     },
     {
-      "label": "Save Video",
+      "label": "Video",
       "tag": "video"
     },
     {
-      "label": "Save /qresearch/ post",
+      "label": "/qresearch/ Post",
       "tag": "qresearch_post"
     }
   ],

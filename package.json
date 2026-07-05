@@ -3,7 +3,11 @@
     "version": "1.0.0",
     "description": "SaveAsRouter Chrome Extension with Webpack bundling",
     "scripts": {
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "build:dev": "webpack --mode development",
+        "build:watch": "webpack --mode development --watch",
+        "package": "webpack --mode production && cd dist && zip -r ../saveasrouter.zip . && cd ..",
+        "browser:debug": "npm run build:dev && brave-browser --load-extension=$(pwd) --remote-debugging-port=9222"
     },
     "devDependencies": {
         "@babel/core": "^7.23.0",

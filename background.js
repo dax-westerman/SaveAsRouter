@@ -1,104 +1,99 @@
 // Background service worker for SaveAsRouter Chrome Extension
 
+import {
+  ROUTE_TARGETS,
+  MENU_NAME_KEY,
+  CONTEXT_MENU_ID,
+  ROUTE_MENU_ID_PREFIX,
+} from "./consts.js";
+import { fetchConfigFile } from "./config_mgr.js";
+
+import { setupHandler, handleMenuClick } from "./handlers.js";
+
+export let cachedConfigData = null;
+
+/**
+ * Fetches the route targets from the configuration file.
+ * @param {*} config The configuration data.
+ * @returns {Promise<Array>} The route targets.
+ */
+async function fetchRouteTargets(config) {
+  if (!config || !config[ROUTE_TARGETS]) {
+    console.warn("No configuration found for routing menus");
+    return [];
+  }
+
+  if (!Array.isArray(config[ROUTE_TARGETS])) {
+    console.error("Routing menu configuration is not an array");
+    return [];
+  }
+
+  // Get the menu configuration
+  const routingTargets = config[ROUTE_TARGETS];
+  if (routingTargets.length === 0) {
+    console.warn("No menu items found in config.json");
+    return [];
+  }
+  return routingTargets;
+}
+
+/**
+ * Fetches the menu name from the configuration file.
+ * @param {*} config The configuration data.
+ * @returns {Promise<string|null>} The menu name.
+ */
+
+async function fetchMenuLabel(config) {
+  if (!config || !config.hasOwnProperty(MENU_NAME_KEY)) {
+    console.error("menu_label not found in config.json");
+    return null;
+  }
+  return config[MENU_NAME_KEY];
+}
 
 // Load configuration and create context menus
 async function setupContextMenus() {
   try {
     // Fetch the configuration
-    const response = await fetch(chrome.runtime.getURL('config.json'));
-    const config = await response.json();
+    const config = await fetchConfigFile();
+
+    // Get the menu configuration
+    const route_targets = await fetchRouteTargets(config);
+
+    // Get the menu name from config
+    const menuName = await fetchMenuLabel(config);
 
     // Remove existing menus
     await chrome.contextMenus.removeAll();
 
-    // Get the menu configuration
-    const offlineMenus = config.Offline || [];
-
-    if (offlineMenus.length === 0) {
-      console.warn('No menu items found in config.json');
-      return;
-    }
-
-    // Create parent menu item "Offline"
+    // Create parent menu item
     chrome.contextMenus.create({
-      id: 'offline-parent',
-      title: 'Offline',
-      contexts: ['all'] // Show for all contexts (text, links, images, videos, etc.)
+      id: CONTEXT_MENU_ID,
+      title: menuName,
+      contexts: ["all"], // Show for all contexts (text, links, images, videos, etc.)
     });
 
     // Create sub-menu items
-    offlineMenus.forEach((menuItem, index) => {
+    route_targets.forEach((menuItem, index) => {
       chrome.contextMenus.create({
-        id: `offline-${index}`,
-        parentId: 'offline-parent',
+        id: `${ROUTE_MENU_ID_PREFIX}${index}`,
+        parentId: CONTEXT_MENU_ID,
         title: menuItem.label,
-        contexts: ['all']
+        contexts: ["all"],
       });
     });
 
     // Store config in chrome storage for later access
     await chrome.storage.local.set({ menuConfig: config });
 
-    console.log('Context menus created successfully');
+    console.log("Context menus created successfully");
   } catch (error) {
-    console.error('Error setting up context menus:', error);
+    console.error("Error setting up context menus:", error);
   }
 }
 
 // Handle context menu clicks
-chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  // Check if it's one of our menu items
-  if (info.menuItemId.startsWith('offline-') && info.menuItemId !== 'offline-parent') {
-    try {
-      // Get the stored configuration
-      const result = await chrome.storage.local.get('menuConfig');
-      const config = result.menuConfig;
-
-      if (!config || !config.Offline) {
-        console.error('Configuration not found');
-        return;
-      }
-
-      // Determine selected part of DOM
-      if (info.selectionText) {
-        // User selected text
-        console.log('Selected text:', info.selectionText);
-      }
-      if (info.srcUrl) {
-        // User right-clicked on a media element
-        console.log('Media URL:', info.srcUrl);
-      }
-      if (info.linkUrl) {
-        // User right-clicked on a link
-        console.log('Link URL:', info.linkUrl);
-      }
-      if (info.mediaType) {
-        // Type of media (image, video, audio)
-        console.log('Media type:', info.mediaType);
-      }
-
-      // Extract the index from the menu item ID
-      const index = parseInt(info.menuItemId.replace('offline-', ''));
-      const menuItem = config.Offline[index];
-
-      if (!menuItem) {
-        console.error('Menu item not found for index:', index);
-        return;
-      }
-
-      // Send a message to the content script instead of injecting code
-      chrome.tabs.sendMessage(tab.id, { action: 'perform_action', tag: menuItem.tag });
-
-    } catch (error) {
-      console.error('Error handling menu click:', error);
-    }
-  }
-});
+chrome.contextMenus.onClicked.addListener(handleMenuClick);
 
 // Initialize context menus when extension is installed or updated
-chrome.runtime.onInstalled.addListener(() => {
-  console.log('Extension installed/updated');
-  setupContextMenus();
-});
-
-
+chrome.runtime.onInstalled.addListener(setupHandler);
