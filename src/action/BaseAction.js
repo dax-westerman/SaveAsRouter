@@ -1,7 +1,7 @@
 /**
  * Base action class for handling actions.
  */
-export class BaseAction {
+export default class BaseAction {
   constructor(actionType) {
     this._actionType = actionType;
     // Configuration loading removed for browser compatibility
@@ -9,6 +9,13 @@ export class BaseAction {
     this._actions = {};
     this._class_action_config = {};
     this._configLoadError = null;
+  }
+
+  logMethodCall(methodName, message) {
+    const actionType = this.actionType;
+    const actionRequested = message.action;
+    const tag = message.tag;
+    console.log(`[${actionType}] ${methodName} called with message: ${JSON.stringify(message)}`);
   }
 
   /**
@@ -21,31 +28,59 @@ export class BaseAction {
   /**
    * Execute all steps for the action.
    */
-  async execute(req, res) {
-    await this.fetch_content();
-    await this.determine_file_type();
-    await this.infer_or_ask_filename();
-    await this.process();
-    await this.save_content();
+  async execute(message, sender, sendResponse) {
+    await this.fetchContent(message, sender, sendResponse);
+    await this.determineFileType(message, sender, sendResponse);
+    await this.inferOrAskFilename(message, sender, sendResponse);
+    await this.process(message, sender, sendResponse);
+    await this.saveContent(message, sender, sendResponse);
   }
 
-  async fetch_content() {
-    throw new Error('You must implement requiredMethod() in a derived class');
+  // Handler methods to be implemented by subclasses
+
+  async fetchContentHandler(message, sender, sendResponse) {
+    throw new Error('Not Implemented');
   }
 
-  async determine_file_type() {
-    throw new Error('You must implement requiredMethod() in a derived class');
+  async determineFileTypeHandler(message, sender, sendResponse) {
+    throw new Error('Not Implemented');
   }
 
-  async infer_or_ask_filename() {
-    throw new Error('You must implement requiredMethod() in a derived class');
+  async inferOrAskFilenameHandler(message, sender, sendResponse) {
+    throw new Error('Not Implemented');
   }
 
-  async process() {
-    throw new Error('You must implement requiredMethod() in a derived class');
+  async processHandler(message, sender, sendResponse) {
+    throw new Error('Not Implemented');
   }
 
-  async save_content() {
-    throw new Error('You must implement requiredMethod() in a derived class');
+  async saveContentHandler(message, sender, sendResponse) {
+    throw new Error('Not Implemented');
+  }
+
+  // Public methods that call the handler methods
+
+  async fetchContent(message, sender, sendResponse) {
+    this.logMethodCall('fetchContentHandler', message, sender, sendResponse);
+    return this.fetchContentHandler(message, sender, sendResponse);
+  }
+  async determineFileType(message, sender, sendResponse) {
+    this.logMethodCall('determineFileTypeHandler', message, sender, sendResponse);
+    return this.determineFileTypeHandler(message, sender, sendResponse);
+  }
+
+  async inferOrAskFilename(message, sender, sendResponse) {
+    this.logMethodCall('inferOrAskFilenameHandler', message, sender, sendResponse);
+    return this.inferOrAskFilenameHandler(message, sender, sendResponse);
+  }
+
+  async process(message, sender, sendResponse) {
+    this.logMethodCall('processHandler', message, sender, sendResponse);
+    return this.processHandler(message, sender, sendResponse);
+  }
+
+  async saveContent(message, sender, sendResponse) {
+    this.logMethodCall('saveContentHandler', message, sender, sendResponse);
+    return this.saveContentHandler(message, sender, sendResponse);
   }
 }

@@ -10,5 +10,5 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   console.log('Context menu item clicked:', info.menuItemId);
-  menuListener();
+  menuListener(info, tab);
 });

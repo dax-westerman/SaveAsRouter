@@ -36,6 +36,7 @@ module.exports = (env, argv) => {
             { from: 'src/manifest.json', to: '.' },
             { from: 'src/config.json', to: '.' },
             { from: 'resources/icons', to: 'icons' },
+            { from: 'src/action', to: 'action' },
           ],
         }),
       ],
