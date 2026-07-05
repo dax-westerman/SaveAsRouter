@@ -11,6 +11,9 @@ export async function setupContextMenus() {
   // Fetch the configuration
   const config = await fetchConfigFile();
 
+  // log to console a pretty print version of the config
+  // console.log('Loaded configuration:', JSON.stringify(config, null, 2));
+
   // Get the menu configuration
   const route_targets = await fetchRouteTargets(config);
 
@@ -39,9 +42,14 @@ export async function setupContextMenus() {
 
   // Store config in chrome storage for later access
   const storageKey = await getBrowserStorageId();
+  console.log('Storage key for menu configuration:', storageKey);
   if (storageKey) {
     await chrome.storage.local.set({ storageKey: config });
   }
+
+  // test to make sure the config is stored correctly
+  const storedConfig = await chrome.storage.local.get(storageKey);
+  console.log('Stored configuration:', storedConfig);
 
   console.log('Context menus created successfully');
 }

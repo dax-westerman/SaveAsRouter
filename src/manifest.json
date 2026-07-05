@@ -10,7 +10,7 @@
     "activeTab"
   ],
   "background": {
-    "service_worker": "dist/background.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
@@ -18,14 +18,14 @@
         "<all_urls>"
       ],
       "js": [
-        "dist/content.js"
+        "content.js"
       ]
     }
   ],
   "web_accessible_resources": [
     {
       "resources": [
-        "dist/*.js"
+        "*.js"
       ],
       "matches": [
         "<all_urls>"

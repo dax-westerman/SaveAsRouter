@@ -6,7 +6,7 @@ import { PERMANENT_PROJECT_LABEL } from '../consts.js';
  * This function is called when the extension is installed or updated.
  * It fetches the configuration, creates context menus, and stores the configuration in Chrome storage.
  */
-function setupHandler() {
+function setupContentRouter() {
   try {
     setupContextMenus();
     console.log(`Successfully set up context menus with permanent id: ${PERMANENT_PROJECT_LABEL}`);
@@ -18,4 +18,4 @@ function setupHandler() {
   }
 }
 
-export { setupHandler };
+export { setupContentRouter };
